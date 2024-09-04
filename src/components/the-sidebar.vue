@@ -61,7 +61,7 @@
 
 <style scoped lang="scss">
   .sidebar {
-    @apply grid grid-rows-[auto,1fr,auto] pb-[24px] sticky h-dvh w-[240px] top-0 left-0 bg-[--dark-blue];
+    @apply grid grid-rows-[auto,1fr,auto] pb-[24px] fixed h-dvh w-[--sidebar-width] top-0 left-0 bg-[--dark-blue];
     // .sidebar__header
     &__header {
       @apply py-[24px] px-[20px];
