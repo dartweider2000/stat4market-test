@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { onClickOutside, useResizeObserver } from "@vueuse/core";
   import { computed, onMounted, ref, toRefs, watch } from "vue";
+  import CustomUnderline from "@/components/custom-underline.vue";
 
   const props = withDefaults(
     defineProps<{
@@ -68,17 +69,7 @@
       >
         <div class="view__number">{{ localCopy }}</div>
         <div v-if="isSaved" class="view__measure">{{ measure }}</div>
-        <svg v-if="canInteractive" height="2" class="view__decoration">
-          <line
-            x1="0"
-            y1="50%"
-            x2="100%"
-            y2="1"
-            stroke="var(--blue)"
-            stroke-width="2"
-            stroke-dasharray="2 4"
-          />
-        </svg>
+        <custom-underline v-if="canInteractive" class="view__decoration" />
       </div>
       <div v-if="!isSaved" class="view__confirm">
         <button class="view__accept" @click="acceptButtonClickHandler">
