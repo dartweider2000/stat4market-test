@@ -11,10 +11,10 @@
     </div>
     <div class="product__right">
       <div class="product__interactive">
-        <a href="/" class="product__link"
+        <router-link to="/" class="product__link"
           >Долговечный букет из 9 роз в коробке, в подарок — вечные
-          стабилизированные цветы,</a
-        >
+          стабилизированные цветы,
+        </router-link>
         <div class="product__icons">
           <a href="/" class="product__link-icon">
             <svg width="16" height="16">

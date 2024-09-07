@@ -91,7 +91,7 @@
     }
 
     &__inner {
-      @apply grid gap-[4px] whitespace-nowrap;
+      @apply grid gap-[4px] whitespace-nowrap text-left;
     }
 
     // .table-header__product
@@ -99,33 +99,33 @@
       @apply text-white leading-[18px] rounded-l-[4px];
       font-size: 13px;
     }
-    // .table-header__wb-rest
     &__wb-rest {
-      // @apply min-w-[150px];
     }
     // .table-header__provider-rest
     &__provider-rest {
-      // @apply min-w-[195px];
     }
     // .table-header__my-rest
     &__my-rest {
-      // @apply min-w-[175px];
     }
     // .table-header__all-rest
     &__all-rest {
-      // @apply min-w-[140px];
     }
     // .table-header__in-road
     &__in-road {
-      // @apply min-w-[150px];
+      & > * {
+        @apply whitespace-normal;
+      }
     }
     // .table-header__order-speed
     &__order-speed {
-      // @apply min-w-[155px];
     }
     // .table-header__change-history
     &__change-history {
       @apply rounded-r-[4px];
+
+      & > * {
+        @apply whitespace-normal;
+      }
     }
   }
 </style>

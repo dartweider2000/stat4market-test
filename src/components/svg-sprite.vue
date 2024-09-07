@@ -11,6 +11,8 @@
   import IconStore from "@/components/icon/icon-store.vue";
   import IconTelegram from "@/components/icon/icon-telegram.vue";
   import IconVk from "@/components/icon/icon-vk.vue";
+  import IconCheck from "@/components/icon/icon-check.vue";
+  import IconClose from "@/components/icon/icon-close.vue";
 </script>
 
 <template>
@@ -27,6 +29,8 @@
     <icon-store />
     <icon-telegram />
     <icon-vk />
+    <icon-check />
+    <icon-close />
   </svg>
 </template>
 

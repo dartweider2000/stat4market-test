@@ -47,7 +47,6 @@
       }
       // .colgroup__col_8
       &_8 {
-        // @apply min-w-[190px] w-full;
       }
     }
   }
