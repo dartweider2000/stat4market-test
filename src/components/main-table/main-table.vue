@@ -1,81 +1,15 @@
 <script setup lang="ts">
-  import type { ITableRow } from "@/types";
-  import { ref } from "vue";
   import MainTableHeader from "@/components/main-table/main-table-header/main-table-header.vue";
-
-  const tableItemsList = ref<ITableRow[]>([
-    {
-      id: 1,
-      firstName:
-        "НикитаНикитаНикитаНикитаНикитаНикитаНикитаНикитаНикитаНикитаНикита",
-      lastName: "Иванов",
-      age: 23,
-      country: "Россия",
-    },
-    {
-      id: 2,
-      firstName: "Денис",
-      lastName: "Прозоров",
-      age: 23,
-      country: "Россия",
-    },
-    {
-      id: 3,
-      firstName: "Алексей",
-      lastName: "Соколов",
-      age: 35,
-      country: "Россия",
-    },
-    {
-      id: 4,
-      firstName: "Себастьян",
-      lastName: "Феттель",
-      age: 38,
-      country: "Германия",
-    },
-  ]);
+  import MainTableRow from "@/components/main-table/main-table-row.vue";
+  import MainTableCols from "@/components/main-table/main-table-cols.vue";
 </script>
 
 <template>
   <table class="main-table">
-    <colgroup class="main-table__colgroup">
-      <col class="main-table__col main-table__col_1" />
-      <col class="main-table__col main-table__col_2" />
-      <col class="main-table__col main-table__col_3" />
-      <col class="main-table__col main-table__col_4" />
-      <col class="main-table__col main-table__col_5" />
-      <col class="main-table__col main-table__col_6" />
-      <col class="main-table__col main-table__col_7" />
-      <col class="main-table__col main-table__col_8" />
-    </colgroup>
+    <main-table-cols />
     <main-table-header class="main-table__header" />
-    <tbody>
-      <tr>
-        <td>
-          <div>Артикул</div>
-        </td>
-        <td>
-          <div>Артикул</div>
-        </td>
-        <td>
-          <div>Артикул</div>
-        </td>
-        <td>
-          <div>Артикул</div>
-        </td>
-        <td>
-          <div>Артикул</div>
-        </td>
-        <td>
-          <div>Артикул</div>
-        </td>
-        <td>
-          <div>Артикул</div>
-        </td>
-        <td>
-          <div>Артикул</div>
-        </td>
-      </tr>
+    <tbody class="main-table__body">
+      <main-table-row class="main-table__row" />
     </tbody>
   </table>
   <!-- <table class="table">
@@ -120,41 +54,9 @@
 <style scoped lang="scss">
   .main-table {
     @apply block overflow-auto w-full;
-    border-spacing: 16px;
-  }
-
-  .main-table {
-    // .main-table__colgroup
-    &__colgroup {
-    }
-    // .main-table__col
-    &__col {
-      // .main-table__col_1
-      &_1 {
-        @apply min-w-[385px] w-full rounded-[140px] overflow-hidden;
-      }
-      // .main-table__col_2
-      &_2 {
-      }
-      // .main-table__col_3
-      &_3 {
-      }
-      // .main-table__col_4
-      &_4 {
-      }
-      // .main-table__col_5
-      &_5 {
-      }
-      // .main-table__col_6
-      &_6 {
-      }
-      // .main-table__col_7
-      &_7 {
-      }
-      // .main-table__col_8
-      &_8 {
-      }
-    }
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0px;
   }
 
   // .table {

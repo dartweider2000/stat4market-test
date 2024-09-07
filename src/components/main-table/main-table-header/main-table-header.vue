@@ -72,20 +72,20 @@
 
 <style scoped lang="scss">
   .table-header {
-    @apply bg-[--blue] rounded-[4px] px-[20px] py-[7px] w-full;
+    @apply bg-[--blue] px-[20px] py-[7px] w-full;
 
     &__row {
       @apply w-full;
 
       & > * {
-        @apply py-[7px] px-[16px];
+        @apply py-[7px] px-[8px];
 
         &:first-child {
-          @apply pl-[20px] pr-0;
+          @apply pl-[20px];
         }
 
         &:last-child {
-          @apply pr-[20px] pl-0;
+          @apply pr-[20px];
         }
       }
     }
