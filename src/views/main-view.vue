@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import MainTable from "@/components/main-table/main-table.vue";
+</script>
 
 <template>
   <div class="main-page">
@@ -13,7 +15,7 @@
     </header>
     <main class="main-page__body main-page-body">
       <h2 class="main-page-body__title">Товары: <span>134 шт.</span></h2>
-      <table class="main-page-body__table"></table>
+      <main-table class="main-page-body__table" />
     </main>
   </div>
 </template>
@@ -50,7 +52,7 @@
     }
   }
   .main-page-body {
-    @apply p-[30px] rounded-[8px] bg-white;
+    @apply p-[30px] rounded-[8px] bg-white overflow-hidden;
     // .main-page-body__title
     &__title {
       @apply text-[--black] font-semibold leading-[24px];

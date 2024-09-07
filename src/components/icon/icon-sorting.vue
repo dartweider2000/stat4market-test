@@ -2,6 +2,7 @@
 
 <template>
   <svg id="sorting" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="10" fill="white" />
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
