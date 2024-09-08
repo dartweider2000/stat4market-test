@@ -305,10 +305,10 @@
     }
   }
   .main-page-body {
-    @apply p-[30px] rounded-[8px] bg-white overflow-hidden;
+    @apply py-[30px] rounded-[8px] bg-white overflow-hidden grid gap-[16px];
     // .main-page-body__title
     &__title {
-      @apply text-[--black] font-semibold leading-[24px];
+      @apply text-[--black] font-semibold leading-[24px] px-[30px];
       font-size: 18px;
 
       & > span {

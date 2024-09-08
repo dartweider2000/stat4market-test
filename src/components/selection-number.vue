@@ -98,7 +98,7 @@
     // .selection-number__interactive
     &__interactive {
       & > input {
-        @apply outline-none max-w-[140px];
+        @apply outline-none max-w-[140px] text-[--black];
         width: v-bind("barElWidthElHeight");
         min-width: none;
       }

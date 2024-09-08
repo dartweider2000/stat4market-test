@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import MainTableHeader from "@/components/main-table/main-table-header/main-table-header.vue";
   import MainTableRow from "@/components/main-table/main-table-row.vue";
-  import MainTableCols from "@/components/main-table/main-table-cols.vue";
   import type { IMainTableRow } from "@/types";
+  import { ref } from "vue";
 
   defineProps<{
     table: IMainTableRow[];
@@ -21,18 +21,20 @@
       value: number
     ) => void;
   }>();
+
+  const orderSpeedDays = ref<number>(7);
 </script>
 
 <template>
   <table class="main-table">
-    <main-table-cols />
-    <main-table-header class="main-table__header" />
+    <main-table-header v-model="orderSpeedDays" class="main-table__header" />
     <tbody class="main-table__body">
       <main-table-row
         v-for="row in table"
         class="main-table__row"
         :key="row.id"
         :row="row"
+        :order-speed-days="orderSpeedDays"
         :change-main-table-in-road-handler="changeMainTableInRoadHandler"
         :change-main-table-order-speed-handler="
           changeMainTableOrderSpeedHandler
@@ -52,7 +54,7 @@
 
 <style scoped lang="scss">
   .main-table {
-    @apply block overflow-auto w-full;
+    @apply block overflow-auto w-full px-[30px];
     table-layout: fixed;
     border-collapse: separate;
     border-spacing: 0px;

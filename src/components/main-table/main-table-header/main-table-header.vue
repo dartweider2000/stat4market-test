@@ -1,39 +1,55 @@
 <script setup lang="ts">
   import MainTableHeaderItem from "@/components/main-table/main-table-header/main-table-header-item.vue";
+  import SelectionNumber from "@/components/selection-number.vue";
+
+  const orderSpeedDays = defineModel<number>();
+  const changeValueHandler = (value: number) => {
+    orderSpeedDays.value = value;
+  };
 </script>
 
 <template>
+  <colgroup class="colgroup">
+    <col name="1" class="colgroup__col colgroup__col_1" />
+    <col name="2" class="colgroup__col colgroup__col_2" />
+    <col name="3" class="colgroup__col colgroup__col_3" />
+    <col name="4" class="colgroup__col colgroup__col_4" />
+    <col name="5" class="colgroup__col colgroup__col_5" />
+    <col name="6" class="colgroup__col colgroup__col_6" />
+    <col name="7" class="colgroup__col colgroup__col_7" />
+    <col name="8" class="colgroup__col colgroup__col_8" />
+  </colgroup>
   <thead class="table-header">
     <tr class="table-header__row">
-      <th class="table-header__product">
-        <div class="table-header__inner">Продукт</div>
+      <th class="table-header__data table-header__data_1">
+        <div class="table-header__cell">Продукт</div>
       </th>
-      <th class="table-header__wb-rest">
-        <div class="table-header__inner">
+      <th class="table-header__data table-header__data_2">
+        <div class="table-header__cell">
           <main-table-header-item>Остаток на WB</main-table-header-item>
           <main-table-header-item :can-question="false"
             >Хватит на складе</main-table-header-item
           >
         </div>
       </th>
-      <th class="table-header__provider-rest">
-        <div class="table-header__inner">
+      <th class="table-header__data table-header__data_3">
+        <div class="table-header__cell">
           <main-table-header-item>Остаток у поставщика</main-table-header-item>
           <main-table-header-item :can-question="false"
             >Хватит на складе</main-table-header-item
           >
         </div>
       </th>
-      <th class="table-header__my-rest">
-        <div class="table-header__inner">
+      <th class="table-header__data table-header__data_4">
+        <div class="table-header__cell">
           <main-table-header-item>Остаток мой склад</main-table-header-item>
           <main-table-header-item :can-question="false"
             >Хватит на складе</main-table-header-item
           >
         </div>
       </th>
-      <th class="table-header__all-rest">
-        <div class="table-header__inner">
+      <th class="table-header__data table-header__data_5">
+        <div class="table-header__cell">
           <main-table-header-item :can-question="false"
             >Остаток всего</main-table-header-item
           >
@@ -42,25 +58,31 @@
           >
         </div>
       </th>
-      <th class="table-header__in-road">
-        <div class="table-header__inner">
+      <th class="table-header__data table-header__data_6">
+        <div class="table-header__cell">
           <main-table-header-item
             >В пути от производителя</main-table-header-item
           >
         </div>
       </th>
-      <th class="table-header__order-speed">
-        <div class="table-header__inner">
+      <th class="table-header__data table-header__data_7">
+        <div class="table-header__cell">
           <main-table-header-item :can-question="false"
             >Скорость заказов</main-table-header-item
           >
-          <main-table-header-item :can-sort="false"
-            >за 7 дней</main-table-header-item
-          >
+          <main-table-header-item class="days-selection" :can-sort="false">
+            за
+            <selection-number
+              class="days-selection__item"
+              measure="дней"
+              :value="orderSpeedDays!"
+              @change-value="changeValueHandler"
+            />
+          </main-table-header-item>
         </div>
       </th>
-      <th class="table-header__change-history">
-        <div class="table-header__inner">
+      <th class="table-header__data table-header__data_8">
+        <div class="table-header__cell">
           <main-table-header-item :can-sort="false" :can-question="false"
             >История изменения</main-table-header-item
           >
@@ -90,42 +112,49 @@
       }
     }
 
-    &__inner {
+    &__cell {
       @apply grid gap-[4px] whitespace-nowrap text-left;
     }
 
-    // .table-header__product
-    &__product {
-      @apply text-white leading-[18px] rounded-l-[4px];
+    &__data {
+      @apply leading-[18px];
       font-size: 13px;
-    }
-    &__wb-rest {
-    }
-    // .table-header__provider-rest
-    &__provider-rest {
-    }
-    // .table-header__my-rest
-    &__my-rest {
-    }
-    // .table-header__all-rest
-    &__all-rest {
-    }
-    // .table-header__in-road
-    &__in-road {
-      & > * {
-        @apply whitespace-normal;
+      &_1 {
+        @apply rounded-l-[4px] text-white;
       }
-    }
-    // .table-header__order-speed
-    &__order-speed {
-    }
-    // .table-header__change-history
-    &__change-history {
-      @apply rounded-r-[4px];
+      &_2 {
+      }
+      &_3 {
+      }
+      &_4 {
+      }
+      &_5 {
+      }
+      &_6 {
+        & > * {
+          @apply whitespace-normal;
+        }
+      }
+      &_7 {
+      }
+      &_8 {
+        @apply rounded-r-[4px];
 
-      & > * {
-        @apply whitespace-normal;
+        & > * {
+          @apply whitespace-normal;
+        }
       }
+    }
+  }
+
+  .days-selection {
+    &:deep(.item__name) {
+      @apply grid grid-flow-col gap-[4px] items-center justify-start;
+    }
+
+    &__item {
+      @apply px-[4px] pb-[2px] bg-white rounded-[4px] leading-[18px];
+      font-size: 13px;
     }
   }
 </style>

@@ -10,6 +10,7 @@
 
   defineProps<{
     row: IMainTableRow;
+    orderSpeedDays: number;
     changeMainTableWbRestHandler: (rowId: number, value: number) => void;
     changeMainTableInRoadHandler: (rowId: number, value: number) => void;
     changeMainTableStorageRestHandler: (rowId: number, value: number) => void;
@@ -26,8 +27,7 @@
     ) => void;
   }>();
 
-  const specNum = ref<number>(30);
-  const isOpenSubTable = ref<boolean>(true);
+  const isOpenSubTable = ref<boolean>(false);
   const toggleSubTable = () => {
     isOpenSubTable.value = !isOpenSubTable.value;
   };
@@ -104,7 +104,8 @@
             @change-value="(value: number) => changeMainTableOrderSpeedHandler(row.id, value)"
           />
           <div class="order-speed__computed">
-            {{ row.orderSpeed.rest * specNum }} шт. / {{ specNum }} дней
+            {{ row.orderSpeed.rest * orderSpeedDays }} шт. /
+            {{ orderSpeedDays }} дней
           </div>
         </div>
       </div>
@@ -303,7 +304,6 @@
 
     &__icon {
       @apply text-[--blue];
-      transition: all 0.2s ease 0s;
 
       .is-closed & {
         @apply rotate-180;
