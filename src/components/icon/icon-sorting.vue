@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <svg id="sorting" viewBox="0 0 20 20">
+  <symbol id="sorting" viewBox="0 0 20 20">
     <circle cx="10" cy="10" r="10" fill="white" />
     <path
       fill-rule="evenodd"
@@ -33,7 +33,7 @@
       d="M5.80806 14.1919C6.05214 14.436 6.44786 14.436 6.69194 14.1919L7.94194 12.9419C8.18602 12.6979 8.18602 12.3021 7.94194 12.0581C7.69786 11.814 7.30214 11.814 7.05806 12.0581L6.25 12.8661L5.44194 12.0581C5.19786 11.814 4.80214 11.814 4.55806 12.0581C4.31398 12.3021 4.31398 12.6979 4.55806 12.9419L5.80806 14.1919Z"
       fill="currentColor"
     />
-  </svg>
+  </symbol>
 </template>
 
 <style scoped lang="scss"></style>
