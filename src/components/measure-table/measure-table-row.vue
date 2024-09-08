@@ -5,20 +5,15 @@
 
   defineProps<{
     row: IMeasureTableRow;
+    changeMeasureTableStorageRestHandler: (
+      measureTableRowId: number,
+      value: number
+    ) => void;
+    changeMeasureTableInRoadHandler: (
+      measureTableRowId: number,
+      value: number
+    ) => void;
   }>();
-
-  const emit = defineEmits<{
-    "change-store-rest": [value: number];
-    "change-in-road": [value: number];
-  }>();
-
-  const changeStoreRestHandler = (value: number) => {
-    emit("change-store-rest", value);
-  };
-
-  const changeInRoadHandler = (value: number) => {
-    emit("change-in-road", value);
-  };
 </script>
 
 <template>
@@ -35,7 +30,6 @@
         <selection-number
           :can-interactive="row.wbRest.value.canModify"
           :value="row.wbRest.value.rest"
-          @change-value="changeStoreRestHandler"
         />
       </div>
     </td>
@@ -47,7 +41,6 @@
         <selection-number
           :can-interactive="row.providedRest.value.canModify"
           :value="row.providedRest.value.rest"
-          @change-value="changeStoreRestHandler"
         />
       </div>
     </td>
@@ -59,7 +52,7 @@
         <selection-number
           :can-interactive="row.storageRest.value.canModify"
           :value="row.storageRest.value.rest"
-          @change-value="changeStoreRestHandler"
+          @change-value="(value: number) => changeMeasureTableStorageRestHandler(row.id, value)"
         />
       </div>
     </td>
@@ -71,7 +64,6 @@
         <selection-number
           :can-interactive="row.allRest.value.canModify"
           :value="row.allRest.value.rest"
-          @change-value="changeStoreRestHandler"
         />
       </div>
     </td>
@@ -83,7 +75,7 @@
         <selection-number
           :can-interactive="row.inRoad.canModify"
           :value="row.inRoad.rest"
-          @change-value="changeInRoadHandler"
+          @change-value="(value: number) => changeMeasureTableInRoadHandler(row.id, value)"
         />
       </div>
     </td>

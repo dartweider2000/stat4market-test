@@ -10,36 +10,26 @@
 
   defineProps<{
     row: IMainTableRow;
-  }>();
-
-  const emit = defineEmits<{
-    "change-wb-rest": [value: number];
-    "change-main-table-storage-rest": [value: number];
-    "change-main-table-in-road": [value: number];
-    "change-order-speed": [value: number];
+    changeMainTableWbRestHandler: (rowId: number, value: number) => void;
+    changeMainTableInRoadHandler: (rowId: number, value: number) => void;
+    changeMainTableStorageRestHandler: (rowId: number, value: number) => void;
+    changeMainTableOrderSpeedHandler: (rowId: number, value: number) => void;
+    changeMeasureTableStorageRestHandler: (
+      mainTableRowId: number,
+      measureTableRowId: number,
+      value: number
+    ) => void;
+    changeMeasureTableInRoadHandler: (
+      mainTableRowId: number,
+      measureTableRowId: number,
+      value: number
+    ) => void;
   }>();
 
   const specNum = ref<number>(30);
-
   const isOpenSubTable = ref<boolean>(true);
   const toggleSubTable = () => {
     isOpenSubTable.value = !isOpenSubTable.value;
-  };
-
-  const changeWbRest = (rest: number) => {
-    emit("change-wb-rest", rest);
-  };
-
-  const changeMainTableStorageRest = (rest: number) => {
-    emit("change-main-table-storage-rest", rest);
-  };
-
-  const changeMainTableInRoad = (value: number) => {
-    emit("change-main-table-in-road", value);
-  };
-
-  const changeOrderSpeed = (value: number) => {
-    emit("change-order-speed", value);
   };
 </script>
 
@@ -50,7 +40,7 @@
   <tr class="data-row">
     <td class="data-row__data">
       <div class="data-row__cell">
-        <product-description />
+        <product-description :product="row.product" />
       </div>
     </td>
     <td class="data-row__data">
@@ -59,7 +49,7 @@
           <selection-number
             :value="row.wbRest.value.rest"
             :can-interactive="row.wbRest.value.canModify"
-            @change-value="changeWbRest"
+            @change-value="(value: number) => changeMainTableWbRestHandler(row.id, value)"
           />
         </storage-cell>
       </div>
@@ -80,7 +70,7 @@
           <selection-number
             :value="row.storageRest.value.rest"
             :can-interactive="row.storageRest.value.canModify"
-            @change-value="changeMainTableStorageRest"
+            @change-value="(value: number) => changeMainTableStorageRestHandler(row.id, value)"
           />
         </storage-cell>
       </div>
@@ -100,7 +90,7 @@
         <selection-number
           :value="row.inRoad.rest"
           :can-interactive="row.inRoad.canModify"
-          @change-value="changeMainTableInRoad"
+          @change-value="(value: number) => changeMainTableInRoadHandler(row.id, value)"
         />
       </div>
     </td>
@@ -111,7 +101,7 @@
             :value="row.orderSpeed.rest"
             :can-interactive="row.orderSpeed.canModify"
             measure="шт. / день"
-            @change-value="changeOrderSpeed"
+            @change-value="(value: number) => changeMainTableOrderSpeedHandler(row.id, value)"
           />
           <div class="order-speed__computed">
             {{ row.orderSpeed.rest * specNum }} шт. / {{ specNum }} дней
@@ -165,7 +155,15 @@
           </tr>
           <tr class="inner-table__row">
             <td class="inner-table__data">
-              <measure-table :table="row.measureTable" />
+              <measure-table
+                :table="row.measureTable"
+                :change-measure-table-storage-rest-handler="
+                  (measureTableRowId: number, value: number) => changeMeasureTableStorageRestHandler(row.id, measureTableRowId, value)
+                "
+                :change-measure-table-in-road-handler="
+                  (measureTableRowId: number, value: number) => changeMeasureTableInRoadHandler(row.id, measureTableRowId, value)
+                "
+              />
             </td>
           </tr>
         </tbody>

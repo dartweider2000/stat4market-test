@@ -1,19 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import type { IProduct } from "@/types";
+
+  defineProps<{
+    product: IProduct;
+  }>();
+</script>
 
 <template>
   <div class="product">
     <div class="product__left">
-      <img
-        src="/img/default-product.jpg"
-        class="product__image"
-        alt="default-product"
-      />
+      <img :src="product.image" class="product__image" alt="default-product" />
     </div>
     <div class="product__right">
       <div class="product__interactive">
-        <router-link to="/" class="product__link"
-          >Долговечный букет из 9 роз в коробке, в подарок — вечные
-          стабилизированные цветы,
+        <router-link to="/" class="product__link">
+          {{ product.name }}
         </router-link>
         <div class="product__icons">
           <a href="/" class="product__link-icon">
@@ -28,7 +29,7 @@
           </button>
         </div>
       </div>
-      <div class="product__article">Артикул WB : 9619790</div>
+      <div class="product__article">Артикул WB : {{ product.article }}</div>
     </div>
   </div>
 </template>

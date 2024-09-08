@@ -7,7 +7,7 @@
     {
       id: 1,
       product: {
-        image: "/",
+        image: "/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
       },
@@ -22,7 +22,7 @@
     {
       id: 2,
       product: {
-        image: "/",
+        image: "/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
       },
@@ -94,7 +94,7 @@
     {
       id: 3,
       product: {
-        image: "/",
+        image: "/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
       },
@@ -165,7 +165,7 @@
     },
   ]);
 
-  const changeWbRestHandler = (rowId: number, value: number) => {
+  const changeMainTableWbRestHandler = (rowId: number, value: number) => {
     const row = mainTable.value.find(({ id }) => id === rowId);
 
     if (row) {
@@ -189,11 +189,51 @@
     }
   };
 
-  const changeOrderSpeedHandler = (rowId: number, value: number) => {
+  const changeMainTableOrderSpeedHandler = (rowId: number, value: number) => {
     const row = mainTable.value.find(({ id }) => id === rowId);
 
     if (row) {
       row.orderSpeed.rest = value;
+    }
+  };
+
+  const changeMeasureTableStorageRestHandler = (
+    mainTableRowId: number,
+    measureTableRowId: number,
+    value: number
+  ) => {
+    const mainTableRow = mainTable.value.find(
+      ({ id }) => id === mainTableRowId
+    );
+
+    if (mainTableRow && mainTableRow.measureTable) {
+      const measureTableRow = mainTableRow.measureTable.find(
+        ({ id }) => id === measureTableRowId
+      );
+
+      if (measureTableRow) {
+        measureTableRow.storageRest.value.rest = value;
+      }
+    }
+  };
+
+  const changeMeasureTableInRoadHandler = (
+    mainTableRowId: number,
+    measureTableRowId: number,
+    value: number
+  ) => {
+    const mainTableRow = mainTable.value.find(
+      ({ id }) => id === mainTableRowId
+    );
+
+    if (mainTableRow && mainTableRow.measureTable) {
+      const measureTableRow = mainTableRow.measureTable.find(
+        ({ id }) => id === measureTableRowId
+      );
+
+      if (measureTableRow) {
+        measureTableRow.inRoad.rest = value;
+      }
     }
   };
 </script>
@@ -216,10 +256,18 @@
       <main-table
         class="main-page-body__table"
         :table="mainTable"
-        @change-wb-rest="changeWbRestHandler"
-        @change-main-table-in-road="changeMainTableInRoadHandler"
-        @change-main-table-storage-rest="changeMainTableStorageRestHandler"
-        @change-order-speed="changeOrderSpeedHandler"
+        :change-main-table-in-road-handler="changeMainTableInRoadHandler"
+        :change-main-table-order-speed-handler="
+          changeMainTableOrderSpeedHandler
+        "
+        :change-main-table-storage-rest-handler="
+          changeMainTableStorageRestHandler
+        "
+        :change-main-table-wb-rest-handler="changeMainTableWbRestHandler"
+        :change-measure-table-storage-rest-handler="
+          changeMeasureTableStorageRestHandler
+        "
+        :change-measure-table-in-road-handler="changeMeasureTableInRoadHandler"
       />
     </main>
   </div>

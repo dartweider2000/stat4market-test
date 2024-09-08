@@ -6,30 +6,21 @@
 
   defineProps<{
     table: IMainTableRow[];
+    changeMainTableWbRestHandler: (rowId: number, value: number) => void;
+    changeMainTableInRoadHandler: (rowId: number, value: number) => void;
+    changeMainTableStorageRestHandler: (rowId: number, value: number) => void;
+    changeMainTableOrderSpeedHandler: (rowId: number, value: number) => void;
+    changeMeasureTableStorageRestHandler: (
+      mainTableRowId: number,
+      measureTableRowId: number,
+      value: number
+    ) => void;
+    changeMeasureTableInRoadHandler: (
+      mainTableRowId: number,
+      measureTableRowId: number,
+      value: number
+    ) => void;
   }>();
-
-  const emit = defineEmits<{
-    "change-wb-rest": [rowId: number, value: number];
-    "change-main-table-in-road": [rowId: number, value: number];
-    "change-main-table-storage-rest": [rowId: number, value: number];
-    "change-order-speed": [rowId: number, value: number];
-  }>();
-
-  const changeWbRestHandler = (rowId: number, value: number) => {
-    emit("change-wb-rest", rowId, value);
-  };
-
-  const changeMainTableInRoadHandler = (rowId: number, value: number) => {
-    emit("change-main-table-in-road", rowId, value);
-  };
-
-  const changeMainTableStorageRestHandler = (rowId: number, value: number) => {
-    emit("change-main-table-storage-rest", rowId, value);
-  };
-
-  const changeOrderSpeedHandler = (rowId: number, value: number) => {
-    emit("change-order-speed", rowId, value);
-  };
 </script>
 
 <template>
@@ -39,13 +30,21 @@
     <tbody class="main-table__body">
       <main-table-row
         v-for="row in table"
+        class="main-table__row"
         :key="row.id"
         :row="row"
-        class="main-table__row"
-        @change-wb-rest="(value: number) => changeWbRestHandler(row.id, value)"
-        @change-main-table-in-road="(value: number) => changeMainTableInRoadHandler(row.id, value)"
-        @change-order-speed="(value: number) => changeOrderSpeedHandler(row.id, value)"
-        @change-main-table-storage-rest="(value: number) => changeMainTableStorageRestHandler(row.id, value)"
+        :change-main-table-in-road-handler="changeMainTableInRoadHandler"
+        :change-main-table-order-speed-handler="
+          changeMainTableOrderSpeedHandler
+        "
+        :change-main-table-storage-rest-handler="
+          changeMainTableStorageRestHandler
+        "
+        :change-main-table-wb-rest-handler="changeMainTableWbRestHandler"
+        :change-measure-table-storage-rest-handler="
+          changeMeasureTableStorageRestHandler
+        "
+        :change-measure-table-in-road-handler="changeMeasureTableInRoadHandler"
       />
     </tbody>
   </table>

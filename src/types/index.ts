@@ -19,13 +19,15 @@ export interface IMeasureTableRow {
   viewTo: string;
 }
 
+export interface IProduct {
+  image: string;
+  name: string;
+  article: number;
+}
+
 export interface IMainTableRow {
   id: number;
-  product: {
-    image: string;
-    name: string;
-    article: number;
-  };
+  product: IProduct;
   wbRest: IRestAndHas;
   providerRest: IRestAndHas;
   storageRest: IRestAndHas;
