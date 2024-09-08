@@ -7,7 +7,7 @@
     {
       id: 1,
       product: {
-        image: "/img/default-product.jpg",
+        image: "/stat4market-test/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
         to: "/",
@@ -23,7 +23,7 @@
     {
       id: 2,
       product: {
-        image: "/img/default-product.jpg",
+        image: "/stat4market-test/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
         to: "/",
@@ -96,7 +96,7 @@
     {
       id: 3,
       product: {
-        image: "/img/default-product.jpg",
+        image: "/stat4market-test/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
         to: "/",
