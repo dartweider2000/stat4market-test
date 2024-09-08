@@ -54,7 +54,7 @@
 
 <style scoped lang="scss">
   .main-table {
-    @apply block overflow-auto w-full px-[30px];
+    @apply block overflow-auto w-full px-[30px] pb-[30px];
     table-layout: fixed;
     border-collapse: separate;
     border-spacing: 0px;

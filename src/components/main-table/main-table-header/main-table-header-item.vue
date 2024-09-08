@@ -36,7 +36,7 @@
   .item {
     @apply grid grid-flow-col justify-start gap-[8px] items-center;
     &__icons {
-      @apply grid grid-flow-col justify-start gap-[4px] items-center;
+      @apply grid grid-flow-col justify-start gap-[4px] items-center text-[--blue];
     }
     // .item__name
     &__name {

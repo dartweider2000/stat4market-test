@@ -276,6 +276,7 @@
     }
     // .measure-header__paragraph
     &__paragraph {
+      @apply translate-y-[2px];
     }
   }
 

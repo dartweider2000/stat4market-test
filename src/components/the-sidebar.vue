@@ -74,7 +74,7 @@
     }
     // .sidebar__logo-text
     &__logo-text {
-      @apply text-ellipsis overflow-hidden whitespace-nowrap text-white font-extrabold;
+      @apply text-ellipsis overflow-hidden whitespace-nowrap text-white font-extrabold translate-y-[1.5px];
       font-size: 16px;
 
       & > span {

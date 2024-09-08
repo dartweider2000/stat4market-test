@@ -27,7 +27,7 @@
     }
     // .item__label
     &__label {
-      @apply text-white font-extrabold;
+      @apply text-white font-extrabold translate-y-[2px];
     }
   }
 </style>
