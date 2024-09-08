@@ -23,6 +23,7 @@ export interface IProduct {
   image: string;
   name: string;
   article: number;
+  to: string;
 }
 
 export interface IMainTableRow {

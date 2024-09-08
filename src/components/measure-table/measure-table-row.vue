@@ -94,7 +94,8 @@
   .measure-row {
     // .measure-row__data
     &__data {
-      @apply px-[16px] py-[12px] bg-white border-b-[1px] border-solid border-[--brown-light];
+      @apply px-[16px] py-[12px] bg-white border-b-[1px] border-solid border-[--brown-light] text-[--black] leading-[20px];
+      font-size: 14px;
       // .measure-row__data_1
       &_1 {
       }

@@ -195,6 +195,7 @@
     // .data-row__data
     &__data {
       @apply pt-[20px] pb-[12px] px-[8px] border-solid border-t-[1px] border-[--blue-light];
+      font-size: 14px;
       vertical-align: top;
 
       &:first-child {
@@ -276,7 +277,8 @@
     }
     // .measure-header__paragraph
     &__paragraph {
-      @apply translate-y-[2px];
+      @apply translate-y-[2px] text-[--black] leading-[16px];
+      font-size: 12px;
     }
   }
 
@@ -294,6 +296,7 @@
     // .toggle__text
     &__text {
       @apply text-[--blue] leading-[20px] relative mb-[2px];
+      font-size: 14px;
     }
     // .toggle__paragraph
     &__paragraph {

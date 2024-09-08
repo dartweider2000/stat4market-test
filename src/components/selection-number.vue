@@ -67,7 +67,7 @@
         :class="{ 'not-interactive': !canInteractive }"
         @click="openInteractiveMode"
       >
-        <div class="view__number">{{ localCopy }}</div>
+        <div class="view__number">{{ localCopy || 0 }}</div>
         <div v-if="isSaved" class="view__measure">{{ measure }}</div>
         <custom-underline v-if="canInteractive" class="view__decoration" />
       </div>

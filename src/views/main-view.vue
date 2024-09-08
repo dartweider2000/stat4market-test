@@ -10,6 +10,7 @@
         image: "/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
+        to: "/",
       },
       wbRest: { value: { canModify: true, rest: 55_475 }, days: 549 },
       providerRest: { value: { canModify: false, rest: 1_000 }, days: 549 },
@@ -25,6 +26,7 @@
         image: "/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
+        to: "/",
       },
       wbRest: { value: { canModify: true, rest: 55_475 }, days: 549 },
       providerRest: { value: { canModify: false, rest: 1_000 }, days: 549 },
@@ -97,6 +99,7 @@
         image: "/img/default-product.jpg",
         article: 9619790,
         name: "Долговечный букет из 9 роз в коробке, в подарок — вечные стабилизированные цветы,",
+        to: "/",
       },
       wbRest: { value: { canModify: true, rest: 55_475 }, days: 549 },
       providerRest: { value: { canModify: false, rest: 1_000 }, days: 549 },
@@ -287,7 +290,7 @@
     @apply grid grid-cols-[1fr,auto] items-center gap-[10px];
     // .main-page-header__title
     &__title {
-      @apply overflow-hidden text-ellipsis whitespace-nowrap text-[--black] leading-[36px] font-semibold;
+      @apply overflow-hidden text-ellipsis whitespace-nowrap text-black leading-[36px] font-semibold;
       font-size: 30px;
     }
     // .main-page-header__button

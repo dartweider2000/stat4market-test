@@ -9,9 +9,9 @@
 </script>
 
 <template>
-  <route-link :to="to" class="social">
+  <router-link :to="to" class="social">
     <slot name="icon" />
-  </route-link>
+  </router-link>
 </template>
 
 <style scoped lang="scss">

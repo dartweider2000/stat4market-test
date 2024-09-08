@@ -9,19 +9,25 @@
 <template>
   <div class="product">
     <div class="product__left">
-      <img :src="product.image" class="product__image" alt="default-product" />
+      <router-link :to="product.to">
+        <img
+          :src="product.image"
+          class="product__image"
+          alt="default-product"
+        />
+      </router-link>
     </div>
     <div class="product__right">
       <div class="product__interactive">
-        <router-link to="/" class="product__link">
+        <router-link :to="product.to" class="product__link">
           {{ product.name }}
         </router-link>
         <div class="product__icons">
-          <a href="/" class="product__link-icon">
+          <router-link :to="product.to" class="product__link-icon">
             <svg width="16" height="16">
               <use xlink:href="#link"></use>
             </svg>
-          </a>
+          </router-link>
           <button class="product__info-icon">
             <svg width="20" height="20">
               <use xlink:href="#info"></use>
