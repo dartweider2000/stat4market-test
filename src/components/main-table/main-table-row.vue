@@ -4,19 +4,42 @@
   import SelectionNumber from "@/components/selection-number.vue";
   import BlueButton from "@/components/blue-button.vue";
   import CustomUnderline from "@/components/custom-underline.vue";
+  import MeasureTable from "@/components/measure-table/measure-table.vue";
   import { ref } from "vue";
+  import type { IMainTableRow } from "@/types";
 
-  const num = ref<number>(123);
-  const changeValueHandler = (v: number) => {
-    num.value = v || 0;
-  };
+  defineProps<{
+    row: IMainTableRow;
+  }>();
+
+  const emit = defineEmits<{
+    "change-wb-rest": [value: number];
+    "change-main-table-storage-rest": [value: number];
+    "change-main-table-in-road": [value: number];
+    "change-order-speed": [value: number];
+  }>();
 
   const specNum = ref<number>(30);
 
-  const isOpenSubTable = ref<boolean>(false);
-  const hasMeasureRow = ref<boolean>(true);
+  const isOpenSubTable = ref<boolean>(true);
   const toggleSubTable = () => {
     isOpenSubTable.value = !isOpenSubTable.value;
+  };
+
+  const changeWbRest = (rest: number) => {
+    emit("change-wb-rest", rest);
+  };
+
+  const changeMainTableStorageRest = (rest: number) => {
+    emit("change-main-table-storage-rest", rest);
+  };
+
+  const changeMainTableInRoad = (value: number) => {
+    emit("change-main-table-in-road", value);
+  };
+
+  const changeOrderSpeed = (value: number) => {
+    emit("change-order-speed", value);
   };
 </script>
 
@@ -32,46 +55,52 @@
     </td>
     <td class="data-row__data">
       <div class="data-row__cell">
-        <storage-cell :days="500">
+        <storage-cell :days="row.wbRest.days">
           <selection-number
-            :value="num"
-            :can-interactive="true"
-            @change-value="changeValueHandler"
+            :value="row.wbRest.value.rest"
+            :can-interactive="row.wbRest.value.canModify"
+            @change-value="changeWbRest"
           />
         </storage-cell>
       </div>
     </td>
     <td class="data-row__data">
       <div class="data-row__cell">
-        <storage-cell :days="500">
-          <selection-number :value="num" :can-interactive="false" />
-        </storage-cell>
-      </div>
-    </td>
-    <td class="data-row__data">
-      <div class="data-row__cell">
-        <storage-cell :days="500">
+        <storage-cell :days="row.providerRest.days">
           <selection-number
-            :value="num"
-            :can-interactive="true"
-            @change-value="changeValueHandler"
+            :value="row.providerRest.value.rest"
+            :can-interactive="row.providerRest.value.canModify"
           />
         </storage-cell>
       </div>
     </td>
     <td class="data-row__data">
       <div class="data-row__cell">
-        <storage-cell :days="500">
-          <selection-number :value="num" :can-interactive="false" />
+        <storage-cell :days="row.storageRest.value.rest">
+          <selection-number
+            :value="row.storageRest.value.rest"
+            :can-interactive="row.storageRest.value.canModify"
+            @change-value="changeMainTableStorageRest"
+          />
+        </storage-cell>
+      </div>
+    </td>
+    <td class="data-row__data">
+      <div class="data-row__cell">
+        <storage-cell :days="row.allRest.days">
+          <selection-number
+            :value="row.allRest.value.rest"
+            :can-interactive="row.allRest.value.canModify"
+          />
         </storage-cell>
       </div>
     </td>
     <td class="data-row__data">
       <div class="data-row__cell">
         <selection-number
-          :value="num"
-          :can-interactive="true"
-          @change-value="changeValueHandler"
+          :value="row.inRoad.rest"
+          :can-interactive="row.inRoad.canModify"
+          @change-value="changeMainTableInRoad"
         />
       </div>
     </td>
@@ -79,13 +108,13 @@
       <div class="data-row__cell">
         <div class="order-speed">
           <selection-number
-            :value="num"
-            :can-interactive="true"
+            :value="row.orderSpeed.rest"
+            :can-interactive="row.orderSpeed.canModify"
             measure="шт. / день"
-            @change-value="changeValueHandler"
+            @change-value="changeOrderSpeed"
           />
           <div class="order-speed__computed">
-            {{ num * specNum }} шт. / {{ specNum }} дней
+            {{ row.orderSpeed.rest * specNum }} шт. / {{ specNum }} дней
           </div>
         </div>
       </div>
@@ -97,7 +126,7 @@
     </td>
   </tr>
   <tr
-    v-if="hasMeasureRow"
+    v-if="row.measureTable"
     class="toggle-row"
     :class="{ 'is-closed': !isOpenSubTable }"
   >
@@ -118,7 +147,7 @@
       <div class="toggle-row__cell"></div>
     </td>
   </tr>
-  <tr v-if="hasMeasureRow && isOpenSubTable" class="sub-table-row">
+  <tr v-if="row.measureTable && isOpenSubTable" class="sub-table-row">
     <td colspan="8" class="sub-table-row__data">
       <table class="sub-table-row__table inner-table">
         <tbody class="inner-table__body">
@@ -136,24 +165,7 @@
           </tr>
           <tr class="inner-table__row">
             <td class="inner-table__data">
-              <table class="measure-table">
-                <colgroup>
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                  <col />
-                </colgroup>
-                <thead></thead>
-                <tbody></tbody>
-              </table>
+              <measure-table :table="row.measureTable" />
             </td>
           </tr>
         </tbody>

@@ -19,7 +19,7 @@
 
   const currentNumber = computed({
     get: () => value.value,
-    set: (value: number) => emit("change-value", value),
+    set: (value: number) => emit("change-value", value || 0),
   });
 
   const isInteractiveMode = ref<boolean>(false);
